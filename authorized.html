@@ -32,6 +32,7 @@
             window.history.back();
         }
       };
+      xhr.ontimeout = () => window.history.back();
       xhr.onerror = () => window.history.back();
       xhr.send(JSON.stringify({
         code: findGetParameter("code"),
