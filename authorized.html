@@ -7,6 +7,7 @@
     <noscript>
       <p>You have JavaScript disabled. This website requires JavaScript to be enabled in order to work.</p>
     </noscript>
+    <p>Loading...</p>
     <script>
       // https://stackoverflow.com/a/5448595
       function findGetParameter(parameterName) {
@@ -20,6 +21,7 @@
       }
       
       let xhr = new XMLHttpRequest();
+      xhr.timeout = 2000;
       xhr.open("POST", "https://cruiser.pandapip1.com/authorized", true);
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.onreadystatechange = () => {
