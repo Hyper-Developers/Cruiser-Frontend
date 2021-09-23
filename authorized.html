@@ -2,11 +2,7 @@
 <html>
     <head>
         <title>Loading...</title>
-        <style>
-            .jsonly {
-                display: none;
-            }
-        </style>
+        <noscript><style> .jsonly { display: none !important; } </style></noscript>
     </head>
     <body style="background-color: #23272a;" class="h-100">
         <noscript class="w-100 h-100">
@@ -31,7 +27,6 @@
             </div>
         </div>
         <script>
-            document.getElementsByClassName('jsonly').forEach(e => { e.style.display = 'block'; });
             // https://stackoverflow.com/a/5448595
             function findGetParameter(parameterName) {
                 let result = null,
