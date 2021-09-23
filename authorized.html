@@ -1,43 +1,66 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Loading...</title>
-  </head>
-  <body>
-    <noscript>
-      <p>You have JavaScript disabled. This website requires JavaScript to be enabled in order to work.</p>
-    </noscript>
-    <p>Loading...</p>
-    <script>
-      // https://stackoverflow.com/a/5448595
-      function findGetParameter(parameterName) {
-        let result = null,
-        let tmp = [];
-        location.search.substr(1).split("&").forEach(item => {
-          tmp = item.split("=");
-          if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
-        });
-        return result;
-      }
-      
-      let xhr = new XMLHttpRequest();
-      xhr.timeout = 2000;
-      xhr.open("POST", "https://cruiser.pandapip1.com/authorized", true);
-      xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.onreadystatechange = () => {
-        if (this.readyState == 4){
-          if (Math.floor(this.status / 100) == 2)
-            window.location.href = "https://discord.com/oauth2/authorized";
-          else 
-            window.history.back();
-        }
-      };
-      xhr.ontimeout = () => window.history.back();
-      xhr.onerror = () => window.history.back();
-      xhr.send(JSON.stringify({
-        code: findGetParameter("code"),
-        state: findGetParameter("state")
-      }));
-    </script>
-  </body>
+    <head>
+        <title>Loading...</title>
+        <style>
+            .jsonly {
+                display: none;
+            }
+        </style>
+    </head>
+    <body style="background-color: #23272a;" class="h-100">
+        <noscript>
+            <div class="w-25" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+                <div class="card text-white bg-dark mb-3 w-100">
+                    <div class="card-header">Error</div>
+                    <div class="card-body">
+                        <img src="https://img.icons8.com/ios/500/fa314a/error--v1.png" class="img-fluid mx-auto d-block" style="max-width: 50%;"/>
+                        <p class="card-text mb-3 text-center">You have JavaScript disabled. This website requires JavaScript to be enabled in order to work.</p>
+                    </div>
+                </div>
+            </div>
+        </noscript>
+        <div class="jsonly">
+            <div class="w-25" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+                <div class="card text-white bg-dark mb-3 w-100">
+                    <div class="card-header">Loading...</div>
+                    <div class="card-body">
+                        <img src="https://img.icons8.com/ios-filled/500/4a90e2/loading-sign.png" class="img-fluid mx-auto d-block" style="max-width: 50%;"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.getElementsByClassName('jsonly').forEach(e => { e.style.display = 'inline'; });
+            // https://stackoverflow.com/a/5448595
+            function findGetParameter(parameterName) {
+                let result = null,
+                let tmp = [];
+                location.search.substr(1).split("&").forEach(item => {
+                    tmp = item.split("=");
+                    if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+                });
+                return result;
+            }
+
+            let xhr = new XMLHttpRequest();
+            xhr.timeout = 2000;
+            xhr.open("POST", "https://cruiser.pandapip1.com/authorized", true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = () => {
+              if (this.readyState == 4){
+                if (Math.floor(this.status / 100) == 2)
+                    window.location.href = "https://discord.com/oauth2/authorized";
+                else 
+                    window.location.href = "https://hyper-developers.github.io/Cruiser-Frontend/error.html";
+                }
+            };
+            xhr.ontimeout = () => window.history.back();
+            xhr.onerror = () => window.history.back();
+            xhr.send(JSON.stringify({
+                code: findGetParameter("code"),
+                state: findGetParameter("state")
+            }));
+        </script>
+    </body>
 </html>
