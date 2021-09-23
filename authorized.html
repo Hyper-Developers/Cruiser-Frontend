@@ -55,15 +55,16 @@
             xhr.open("POST", "https://cruiser.pandapip1.com/authorized", true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.onreadystatechange = () => {
-              if (this.readyState == 4){
-                if (Math.floor(this.status / 100) == 2)
-                    window.location.href = "https://discord.com/oauth2/authorized";
-                else 
-                    window.location.href = "https://hyper-developers.github.io/Cruiser-Frontend/error.html";
+                if (this.readyState == 4){
+                    if (Math.floor(this.status / 100) == 2) {
+                        window.location.href = "https://discord.com/oauth2/authorized";
+                    } else {
+                        window.location.href = "https://hyper-developers.github.io/Cruiser-Frontend/error.html";
+                    }
                 }
             };
-            xhr.ontimeout = () => window.history.back();
-            xhr.onerror = () => window.history.back();
+            xhr.ontimeout = () => { window.location.href = "https://hyper-developers.github.io/Cruiser-Frontend/error.html"; };
+            xhr.onerror = () => { window.location.href = "https://hyper-developers.github.io/Cruiser-Frontend/error.html"; };
             xhr.send(JSON.stringify({
                 code: findGetParameter("code"),
                 state: findGetParameter("state")
