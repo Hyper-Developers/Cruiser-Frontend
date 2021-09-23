@@ -9,7 +9,7 @@
         </style>
     </head>
     <body style="background-color: #23272a;" class="h-100">
-        <noscript>
+        <noscript class="w-100 h-100">
             <div class="w-25" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
                 <div class="card text-white bg-dark mb-3 w-100">
                     <div class="card-header">Error</div>
@@ -20,7 +20,7 @@
                 </div>
             </div>
         </noscript>
-        <div class="jsonly">
+        <div class="jsonly w-100 h-100">
             <div class="w-25" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
                 <div class="card text-white bg-dark mb-3 w-100">
                     <div class="card-header">Loading...</div>
@@ -31,7 +31,7 @@
             </div>
         </div>
         <script>
-            document.getElementsByClassName('jsonly').forEach(e => { e.style.display = 'inline'; });
+            document.getElementsByClassName('jsonly').forEach(e => { e.style.display = 'block'; });
             // https://stackoverflow.com/a/5448595
             function findGetParameter(parameterName) {
                 let result = null,
